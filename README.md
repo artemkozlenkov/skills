@@ -45,6 +45,55 @@ When asked to verify, audit, or review the inline comments already posted, invok
 
 Alternatively, copy `skills/` to `.cursor/rules/` or reference the skill descriptions in your custom instructions.
 
+## Prerequisites
+
+### `glab` CLI Setup
+
+1. **Install glab**:
+
+   ```bash
+   # macOS
+   brew install glab
+
+   # Linux (Debian/Ubuntu)
+   curl -L https://gitlab.com/gitlab-org/cli/-/releases/v1/releases/packages/$(uname -m)/glab_1/latest/download  | tar -xz && mv bin/glab /usr/local/bin/
+
+   # Or use your package manager
+   ```
+
+2. **Authenticate with GitLab**:
+
+   ```bash
+   glab auth login --hostname gitlab.bxd-dev.ch
+   ```
+
+   - Choose **GitLab instance** (not GitHub)
+   - Provide your GitLab URL (e.g., `https://gitlab.bxd-dev.ch`)
+   - Generate a token at `https://gitlab.bxd-dev.ch/-/profile/personal_access_tokens` with `api` and `write_repository` scopes
+   - Paste the token when prompted
+
+3. **Verify auth**:
+
+   ```bash
+   glab auth status
+   glab api user --jq '.username'
+   ```
+
+4. **Set default host** (optional — saves passing `--repo` on every call):
+
+   ```bash
+   glab config set gitlab gitlab.bxd-dev.ch
+   ```
+
+### `jq` (optional but recommended)
+
+Many skill steps use `jq` for JSON parsing:
+
+```bash
+brew install jq        # macOS
+sudo apt install jq    # Linux
+```
+
 ## Requirements
 
 - `glab` CLI authenticated (`glab auth login`)
