@@ -61,10 +61,23 @@ User → glab-mr-review → Posts inline comments on MR
 
 ```bash
 mkdir -p ~/.claude/skills/glab-mr-review
-cp glab-mr-review.md glab-mr-review-verify.md ~/.claude/skills/glab-mr-review/
+mkdir -p ~/.claude/skills/glab-mr-review-verify
+
+# Main review skill
+cp SKILL.md ~/.claude/skills/glab-mr-review/
+
+# Verify skill
+cp glab-mr-review-verify/SKILL.md ~/.claude/skills/glab-mr-review-verify/
 ```
 
-> Each `.md` file in the skills directory becomes a callable skill.
+Or use symlinks (recommended — keeps skills in sync with repo):
+
+```bash
+ln -s /Users/arko/projects/glab-mr-review ~/.claude/skills/glab-mr-review
+ln -s /Users/arko/projects/glab-mr-review/glab-mr-review-verify ~/.claude/skills/glab-mr-review-verify
+```
+
+> Claude Code requires skills to be a directory containing a `SKILL.md` file. A standalone `.md` file will not appear in the `/` menu.
 
 ### Cursor IDE
 
